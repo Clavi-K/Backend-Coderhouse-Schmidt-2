@@ -1,0 +1,32 @@
+{{#if prods}}
+
+<h2>Productos disponibles</h2>
+
+<ul class="prodList">
+
+    {{#each prods}}
+
+    <li class="prod">
+
+        <h3 class="prodName">Nombre: {{name}}</h3>
+        <h3 class="prodPrice">Precio: {{price}}</h3>
+
+        <img class="prodImg" src="{{thumbnail}}" alt="" />
+
+    </li>
+
+    {{/each}}
+
+</ul>
+
+{{else}}
+
+<li class="prod">
+
+    <h3 class="prodName">No hay productos :c</h3>
+
+</li>
+
+{{/if}}
+
+<hr>

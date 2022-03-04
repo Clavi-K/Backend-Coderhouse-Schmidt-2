@@ -1,0 +1,101 @@
+/* --- CLASSES --- */
+
+.emailDiv {
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+}
+
+.emailDiv div{
+    display: flex;
+    flex-direction: row;
+}
+
+.emailInput {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 40%;
+}
+
+.submit {
+    width: 10%;
+    height: 80%;
+    margin-top: 0.6%;
+    margin-left: 2%;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat h2 {
+    text-align: center;
+}
+
+.chat div {
+    margin: auto;
+    width: 50%;
+}
+
+.chatInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.send {
+    margin-top: 1%;
+}
+
+.msg {
+    margin-top: 1%;
+}
+
+.prodList {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    list-style: none;
+}
+
+.newProd {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 1%;
+}
+
+.newProd input {
+    margin-top: 1%;
+}
+
+.newProd button {
+    margin-top: 1%;
+}
+
+.usersContainer {
+    margin: 1%;
+}
+
+.prodContainer {
+    margin: 1%;
+}
+
+/* --- CHAT CSS --- */
+
+.msgBubble {
+    background-color: lightgray;
+    margin: 1%;
+    border-style: solid;
+    border-color: white;
+    width: 30%;
+}
+
+.local {
+    background-color: lightblue;
+    text-align: right;
+}
+
+.remote {
+    background-color: lightgreen;
+}
+

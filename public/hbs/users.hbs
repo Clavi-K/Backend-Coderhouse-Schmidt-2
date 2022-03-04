@@ -1,0 +1,26 @@
+<h2>Usuarios conectados</h2>
+
+{{#if users.length}}
+
+<ul>
+
+    {{#each users}}
+
+    <li>
+        <p class="userListEmail">{{email}}</p>
+    </li>
+
+    {{/each}}
+
+</ul>
+
+
+{{else}}
+
+<li>
+    <p>No hay usuarios conectados :c</p>
+</li>
+
+{{/if}}
+
+<hr>
