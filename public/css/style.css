@@ -1,5 +1,4 @@
 /* --- CLASSES --- */
-
 .emailDiv {
     display: flex;
     flex-direction: column;
@@ -8,10 +7,10 @@
 
 .emailDiv div{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
-.emailInput {
+.emailDiv div input {
     margin-top: 1%;
     margin-bottom: 1%;
     width: 40%;
@@ -62,6 +61,10 @@
     flex-direction: column;
     width: 50%;
     margin: 1%;
+}
+
+.prodImg{
+    height: 300%;
 }
 
 .newProd input {

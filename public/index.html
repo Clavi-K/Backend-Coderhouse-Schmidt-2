@@ -20,10 +20,13 @@
     <div class="emailDiv" id="emailDiv">
 
         <hr>
-        <label for="email">Correo electrónico:</label>
 
-        <div>
+        <div class="inputs">
             <input type="text" name="email" id="email" class="emailInput" placeholder="Ingrese su correo electrónico">
+            <input type="text" name="name" id="name" class="nameInput" placeholder="Ingrese su nombre">
+            <input type="text" name="surname" id="surname" class="surnameInput" placeholder="Ingrese su apellido">
+            <input type="number" name="age" id="age" class="ageInput" placeholder="Ingrese su edad">
+            <input type="text" name="alias" id="alias" class="aliasInput" placeholder="Ingrese su alias">
             <button id="submit" class="btn btn-primary submit">Iniciar sesión</button>
         </div>
 
@@ -45,7 +48,7 @@
 
     <div id="chat" class="chat">
 
-        <h2>Chat</h2>
+        <h2 id="chatTitle">Chat</h2>
 
         <div id="msgsContainer"></div>
 
@@ -62,6 +65,8 @@
     <div class="prodContainer" id="prodContainer"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.2/dist/normalizr.browser.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/static/js/client.js"></script>
 </body>
