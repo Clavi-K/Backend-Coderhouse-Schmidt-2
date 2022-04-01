@@ -1,4 +1,9 @@
 /* --- CLASSES --- */
+
+.userInfo p span {
+    font-weight: bold;
+}
+
 .emailDiv {
     display: flex;
     flex-direction: column;

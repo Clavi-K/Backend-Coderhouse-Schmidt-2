@@ -4,83 +4,66 @@ const nameInput = document.getElementById("name");
 const surnameInput = document.getElementById("surname");
 const ageInput = document.getElementById("age");
 const aliasInput = document.getElementById("alias");
-const emailDiv = document.getElementById("emailDiv");
-const username = document.getElementById("userEmail");
 const usersContainer = document.getElementById("usersContainer");
 const prodContainer = document.getElementById("prodContainer")
 const chat = document.getElementById("chat");
-const newProd = document.getElementById("newProd");
 const sendProd = document.getElementById("sendProd");
-const prodName = document.getElementById("name");
-const prodPrice = document.getElementById("price");
-const prodThumbnail = document.getElementById("thumbnail");
+const prodName = document.getElementById("prodName");
+const prodPrice = document.getElementById("prodPrice");
+const prodThumbnail = document.getElementById("prodThumbnail");
 const msgsContainer = document.getElementById("msgsContainer");
 const msg = document.getElementById("msg");
 const sendBtn = document.getElementById("sendBtn");
 const chaTitle = document.getElementById("chatTitle")
 
-const user = {};
+const user = {}
+user.email = emailInput.innerHTML;
+
 let users = [];
 const prods = [];
-chat.style.visibility = "hidden";
-newProd.style.visibility = "hidden";
 
-submitButton.addEventListener("click", () => {
+user.info = {
+    email: user.email,
+    name: nameInput.innerHTML,
+    surname: surnameInput.innerHTML,
+    age: ageInput.innerHTML,
+    alias: aliasInput.innerHTML,
+    avatar: faker.internet.avatar(),
+}
 
-    if (emailInput.value.includes("@")) {
+user.socket = io();
 
-        emailDiv.innerHTML = null;
-        newProd.style.visibility = "visible";
-        chat.style.visibility = "visible";
+user.socket.emit("userEmail", user.info);
+user.socket.on("users", renderUser);
+user.socket.on("messages", (data) => {
 
-        user.email = emailInput.value;
+    const author = new normalizr.schema.Entity("authors", {}, { idAttribute: "email" });
+    const message = new normalizr.schema.Entity("messages", {
+        author: author
+    });
 
-        user.info = {
-            email: user.email,
-            name: nameInput.value,
-            surname: surnameInput.value,
-            age: ageInput.value,
-            alias: aliasInput.value,
-            avatar: faker.internet.avatar(),
-        }
+    const messages = new normalizr.schema.Entity("data", {
+        messages: [message]
+    });
 
-        username.innerHTML = user.email;
+    const denormalizedData = normalizr.denormalize(data.result, messages, data.entities);
 
-        user.socket = io();
+    for (const item of denormalizedData.messages) {
+        renderPending(item._doc)
+    };
 
-        user.socket.emit("userEmail", user.info);
-        user.socket.on("users", renderUser);
-        user.socket.on("messages", (data) => {
+    chaTitle.innerHTML = `Chat Compresión: ${compression(JSON.stringify(data).length, JSON.stringify(denormalizedData).length)}%`
 
-            const author = new normalizr.schema.Entity("authors", {}, { idAttribute: "email" });
-            const message = new normalizr.schema.Entity("messages", {
-                author: author
-            });
+})
+user.socket.on("offline", deleteUser);
+user.socket.on("prods", renderProds);
+user.socket.on("message", render);
 
-            const messages = new normalizr.schema.Entity("data", {
-                messages: [message]
-            });
+renderUserList();
 
-            const denormalizedData = normalizr.denormalize(data.result, messages, data.entities);
+sendProd.addEventListener("click", addProd);
+sendBtn.addEventListener("click", msgManager);
 
-            for (const item of denormalizedData.messages) {
-                renderPending(item._doc)
-            };
-
-            chaTitle.innerHTML = `Chat Compresión: ${compression(JSON.stringify(data).length, JSON.stringify(denormalizedData).length)}%`
-
-        })
-        user.socket.on("offline", deleteUser);
-        user.socket.on("prods", renderProds);
-        user.socket.on("message", render);
-
-        renderUserList();
-
-        sendProd.addEventListener("click", addProd);
-        sendBtn.addEventListener("click", msgManager);
-
-    }
-});
 
 function renderUser(u) {
 
