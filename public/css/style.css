@@ -4,6 +4,17 @@
     font-weight: bold;
 }
 
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs input {
+    margin-top: 1%;
+    margin-right: 50%;
+    margin-left: 1%;
+}
+
 .emailDiv {
     display: flex;
     flex-direction: column;

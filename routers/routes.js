@@ -1,47 +1,37 @@
 const path = require("path");
 const { Router } = require("express");
+const passport = require("passport")
 
 const auth = require("../middlewares/auth");
 
 const router = new Router();
 
-router.get("/", (req, res) => res.render("login"));
-
-router.post("/login", (req, res) => {
-
-    if (!req.body.email.includes("@")) {
-        res.redirect("/");
-    } else {
-        const user = req.body;
-
-        if (user) {
-            req.session.user = {
-                email: user.email,
-                name: user.name,
-                surname: user.surname,
-                age: user.age,
-                alias: user.alias
-            }
-        }
-
-        res.redirect("/home");
-    }
-
+router.get("/", auth, (req, res) => {
+    res.render("home", { user: req.user })
 });
 
-router.get("/home", auth, (req, res) => res.render("home", { user: req.session.user }));
+router.post("/register", passport.authenticate("register", {
+    successRedirect: "/",
+    failureRedirect: "/register",
+    failureFlash: true
+}))
+
+router.post("/login", passport.authenticate("login", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true
+}))
+
+router.get("/register", (req, res) => res.render("register"))
+router.get("/login", (req, res) => res.render("login"))
 
 router.get("/logout", auth, (req, res) => {
 
-    const username = req.session.user.name;
+    const {name, surname} = req.user
+    const username = `${name} ${surname}`
 
-    req.session.destroy((err) => {
-        if (err) {
-            return res.redirect("/");
-        }
-    });
-
-    res.render("bye", {username});
+    req.logOut()
+    res.render("bye", { username })
 
 });
 

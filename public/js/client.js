@@ -2,8 +2,7 @@ const submitButton = document.getElementById("submit");
 const emailInput = document.getElementById("email");
 const nameInput = document.getElementById("name");
 const surnameInput = document.getElementById("surname");
-const ageInput = document.getElementById("age");
-const aliasInput = document.getElementById("alias");
+const passwordInput = document.getElementById("password");
 const usersContainer = document.getElementById("usersContainer");
 const prodContainer = document.getElementById("prodContainer")
 const chat = document.getElementById("chat");
@@ -26,10 +25,10 @@ user.info = {
     email: user.email,
     name: nameInput.innerHTML,
     surname: surnameInput.innerHTML,
-    age: ageInput.innerHTML,
-    alias: aliasInput.innerHTML,
-    avatar: faker.internet.avatar(),
+    password: passwordInput.innerHTML,
 }
+
+//console.log(user.info)
 
 user.socket = io();
 

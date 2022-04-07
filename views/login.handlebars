@@ -2,14 +2,16 @@
 
     <hr>
 
+    <h1>Iniciar sesión</h1>
+
+    {{> error }}
+
     <div class="inputs">
         <input type="text" name="email" id="email" class="emailInput" placeholder="Ingrese su correo electrónico">
-        <input type="text" name="name" id="name" class="nameInput" placeholder="Ingrese su nombre">
-        <input type="text" name="surname" id="surname" class="surnameInput" placeholder="Ingrese su apellido">
-        <input type="number" name="age" id="age" class="ageInput" placeholder="Ingrese su edad">
-        <input type="text" name="alias" id="alias" class="aliasInput" placeholder="Ingrese su alias">
-
+        <input type="password" name="password" id="password" class="passwordInput" placeholder="Ingrese su contraseña">
     </div>
 
     <button type="submit" class="btn btn-primary submit">Iniciar sesión</button>
+
+    <p>¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
 </form>

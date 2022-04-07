@@ -7,6 +7,11 @@ const { engine } = require('express-handlebars');
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
+// passport and flash
+const passport = require("passport")
+const flash = require("express-flash")
+const initializePassportLocal = require("./passport/local")
+
 const config = require("./config");
 const chat = require("./chat")
 const viewRouter = require("./routers/routes");
@@ -17,20 +22,9 @@ const server = http.createServer(app);
 const io = new Server(server);
 const PORT = process.env.PORT || 8082;
 
-mongoose.connect(`${config.local.schema}://${config.local.hostname}:${config.local.dbport}/${config.local.database}`).then(() => {
+mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.PASSWORD}@${config.atlas.HOSTNAME}/${config.atlas.DATABASE}?${config.atlas.OPTIONS}`).then(() => {
 
-    app.use(session({
-        secret: "secret",
-        resave: true,
-        saveUninitialized: true,
-        store: new MongoStore({
-            mongoUrl: `${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.PASSWORD}@${config.atlas.HOSTNAME}/${config.atlas.DATABASE}?${config.atlas.OPTIONS}`,
-            ttl: 60,
-            autoRemove: "interval",
-            autoRemoveInterval: 1,
-            touchAfter: 60
-        })
-    }));
+    initializePassportLocal(passport);
 
     app.set("view engine", "handlebars");
     app.engine("handlebars", engine({
@@ -40,10 +34,27 @@ mongoose.connect(`${config.local.schema}://${config.local.hostname}:${config.loc
     }));
 
     app.use(express.json())
+    app.use(flash())
     app.use(express.urlencoded({ extended: true }))
+
+    app.use(session({
+        secret: "secret",
+        resave: true,
+        saveUninitialized: true,
+        store: new MongoStore({
+            mongoUrl: `${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.PASSWORD}@${config.atlas.HOSTNAME}/${config.atlas.DATABASE}?${config.atlas.OPTIONS}`,
+            ttl: 10 * 60,
+            expires: 1000 * 10 * 60,
+            autoRemove: "native"
+        })
+    }));
+
+    app.use(passport.initialize())
+    app.use(passport.session())
+
     app.use("/static", express.static(path.join(__dirname, 'public')));
     app.use("/", viewRouter);
-
+    
     /* ----------------- WEBSOCKETS ----------------- */
 
     io.on("connection", chat);
