@@ -24,11 +24,8 @@ const prods = [];
 user.info = {
     email: user.email,
     name: nameInput.innerHTML,
-    surname: surnameInput.innerHTML,
-    password: passwordInput.innerHTML,
+    surname: surnameInput.innerHTML
 }
-
-//console.log(user.info)
 
 user.socket = io();
 

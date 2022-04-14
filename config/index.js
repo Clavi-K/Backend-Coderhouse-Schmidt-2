@@ -6,11 +6,11 @@ module.exports = {
         dbport: "27017"
     },
     atlas: {
-        HOSTNAME: "cluster0.j3uwp.mongodb.net",
-        SCHEMA: "mongodb+srv",
-        USER: "localhost",
+        HOSTNAME: process.env.ATLASHOSTNAME,
+        SCHEMA: process.env.ATLASSCHEMA,
+        USER: process.env.ATLASUSER,
         PASSWORD: process.env.MONGOPASSWORD,
-        DATABASE: "chat",
-        OPTIONS: "retryWrites=true&w=majority"
+        DATABASE: process.env.ATLASDATABASE,
+        OPTIONS: process.env.ATLASOPTIONS
     }
 }

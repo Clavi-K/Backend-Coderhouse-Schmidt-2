@@ -15,12 +15,13 @@ const initializePassportLocal = require("./passport/local")
 const config = require("./config");
 const chat = require("./chat")
 const viewRouter = require("./routers/routes");
+const randomsRouter = require("./routers/randomsRoutes");
 
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-const PORT = process.env.PORT || 8082;
+const PORT = require("./config/minimist")
 
 mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.PASSWORD}@${config.atlas.HOSTNAME}/${config.atlas.DATABASE}?${config.atlas.OPTIONS}`).then(() => {
 
@@ -54,6 +55,7 @@ mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.P
 
     app.use("/static", express.static(path.join(__dirname, 'public')));
     app.use("/", viewRouter);
+    app.use("/api", randomsRouter);
     
     /* ----------------- WEBSOCKETS ----------------- */
 
