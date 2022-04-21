@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const passport = require("passport")
 const minimist = require("minimist")
-const {fork} = require("child_process")
 
 const auth = require("../middlewares/auth");
 
@@ -38,6 +37,8 @@ router.get("/logout", auth, (req, res) => {
 
 router.get("/info", auth, (req, res) => {
 
+    const CPUs = require("os").cpus().length
+
     res.send({
         arguments: minimist(process.argv.slice(2)),
         platform: process.platform,
@@ -45,7 +46,8 @@ router.get("/info", auth, (req, res) => {
         memoryUsage: process.memoryUsage.rss(),
         execPath: process.execPath,
         processId: process.pid,
-        mainPath: process.mainModule.path
+        mainPath: process.mainModule.path,
+        CPUs: CPUs
     })
 
 })

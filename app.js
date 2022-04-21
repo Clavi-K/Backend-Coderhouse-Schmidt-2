@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '.env' })
 const express = require('express');
 const path = require('path')
 const http = require('http')
@@ -17,11 +18,9 @@ const chat = require("./chat")
 const viewRouter = require("./routers/routes");
 const randomsRouter = require("./routers/randomsRoutes");
 
-
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-const PORT = require("./config/minimist")
 
 mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.PASSWORD}@${config.atlas.HOSTNAME}/${config.atlas.DATABASE}?${config.atlas.OPTIONS}`).then(() => {
 
@@ -56,11 +55,14 @@ mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.P
     app.use("/static", express.static(path.join(__dirname, 'public')));
     app.use("/", viewRouter);
     app.use("/api", randomsRouter);
-    
+
     /* ----------------- WEBSOCKETS ----------------- */
 
     io.on("connection", chat);
 
-    server.listen(PORT, () => console.log(`Escuchando en puerto ${PORT}`));
 });
+
+module.exports = server
+
+
 

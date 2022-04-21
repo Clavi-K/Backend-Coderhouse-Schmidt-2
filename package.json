@@ -5,19 +5,27 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon --ignore './public/*' --ignore './sesion/* -r dotenv/config app.js -p"
+    "dev": "nodemon --ignore './public/*' --ignore './sesion/* -r dotenv/config ./launchers/server.js",
+    "forever:stopall": "forever stopall",
+    "forever:list": "forever list",
+    "forever:fork": "forever start ./launchers/server.js --watch 8080 && forever start ./launchers/server.js --watch 8081 && forever start ./launchers/server.js --watch 8082",
+    "forever:cluster": "forever start ./launchers/cluster.js --watch 8080",
+    "pm2:list": "pm2 list",
+    "pm2:stopall": "pm2 delete all",
+    "pm2:fork": "pm2 start ./launchers/pm2.fork.config.js --watch",
+    "pm2:cluster": "pm2 start launchers/pm2.cluster.config.js --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Clavi-K/Backend-Coderhouse-Schmidt.git"
+    "url": "git+https://github.com/Clavi-K/Backend-Coderhouse-Schmidt-2.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Clavi-K/Backend-Coderhouse-Schmidt/issues"
+    "url": "https://github.com/Clavi-K/Backend-Coderhouse-Schmidt-2/issues"
   },
-  "homepage": "https://github.com/Clavi-K/Backend-Coderhouse-Schmidt#readme",
+  "homepage": "https://github.com/Clavi-K/Backend-Coderhouse-Schmidt-2#readme",
   "devDependencies": {
     "nodemon": "^2.0.15"
   },
@@ -30,12 +38,14 @@
     "express-handlebars": "^6.0.3",
     "express-session": "^1.17.2",
     "faker": "^3.1.0",
+    "forever": "^4.0.3",
     "knex": "^1.0.4",
     "minimist": "^1.2.6",
     "mongoose": "^6.2.8",
     "normalizr": "^3.6.2",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
+    "pm2": "^5.2.0",
     "socket.io": "^4.4.1"
   },
   "description": ""

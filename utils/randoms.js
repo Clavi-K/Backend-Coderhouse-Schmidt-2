@@ -1,4 +1,4 @@
-const randoms = (num) => {
+module.exports = (num) => {
 
     let iterator
 
@@ -13,7 +13,7 @@ const randoms = (num) => {
     }
 
     for (let i = 0; i < iterator; i++) {
-        result.numbers.push(Math.floor(Math.random() * (10 - 1 + 1)) + 1)
+        result.numbers.push(Math.floor(Math.random() * (1000 - 1 + 1)) + 1)
     }
 
     for (let i = 0; i < iterator; i++) {
@@ -25,16 +25,3 @@ const randoms = (num) => {
 
     return result
 }
-
-process.on("message", msg => {
-
-    if (msg === "start") {
-
-        const sum = randoms(process.argv[2])
-        process.send(sum)
-
-        process.exit()
-
-    }
-
-})
