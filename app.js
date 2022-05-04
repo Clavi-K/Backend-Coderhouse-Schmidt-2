@@ -17,6 +17,7 @@ const config = require("./config");
 const chat = require("./chat")
 const viewRouter = require("./routers/routes");
 const randomsRouter = require("./routers/randomsRoutes");
+const logger = require("./utils/logger")
 
 const app = express();
 const server = http.createServer(app);
@@ -55,6 +56,11 @@ mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.P
     app.use("/static", express.static(path.join(__dirname, 'public')));
     app.use("/", viewRouter);
     app.use("/api", randomsRouter);
+
+    app.get("*", (req, res) => {
+        logger.warn(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Not found`)
+        res.send("Not found \n <a href='/'>Home</a>")
+    })
 
     /* ----------------- WEBSOCKETS ----------------- */
 

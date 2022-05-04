@@ -1,12 +1,15 @@
 const { Router } = require("express");
 const passport = require("passport")
 const minimist = require("minimist")
+const compression = require("compression")
 
 const auth = require("../middlewares/auth");
+const logger = require("../utils/logger")
 
 const router = new Router();
 
 router.get("/", auth, (req, res) => {
+    logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
     res.render("home", { user: req.user })
 });
 
@@ -27,6 +30,8 @@ router.get("/login", (req, res) => res.render("login"))
 
 router.get("/logout", auth, (req, res) => {
 
+    logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
+
     const { name, surname } = req.user
     const username = `${name} ${surname}`
 
@@ -35,9 +40,13 @@ router.get("/logout", auth, (req, res) => {
 
 });
 
-router.get("/info", auth, (req, res) => {
+router.get("/info", /* auth, compression(), */ (req, res) => {
+
+    logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
 
     const CPUs = require("os").cpus().length
+
+
 
     res.send({
         arguments: minimist(process.argv.slice(2)),

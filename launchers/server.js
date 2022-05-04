@@ -2,5 +2,8 @@
     const PORT = require("../config/minimist")
     const app = await require("../app");
 
-    app.listen(PORT, () => console.log(`Escuchando en puerto ${PORT}`));
+    //logger
+    const logger = require("../utils/logger")
+
+    app.listen(PORT, () => logger.log(`Escuchando en puerto ${PORT}`));
 })()

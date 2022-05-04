@@ -13,7 +13,10 @@
     "pm2:list": "pm2 list",
     "pm2:stopall": "pm2 delete all",
     "pm2:fork": "pm2 start ./launchers/pm2.fork.config.js --watch",
-    "pm2:cluster": "pm2 start launchers/pm2.cluster.config.js --watch"
+    "pm2:cluster": "pm2 start launchers/pm2.cluster.config.js --watch",
+    "test:artillery": "artillery quick --count=50 -n 20 http://localhost:8082/info > result-artillery.txt",
+    "test:autocannon": "node ./test/test.spec.js",
+    "0x": "0x ./launchers/server.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +33,11 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "0x": "^5.2.1",
+    "artillery": "^2.0.0-15",
+    "autocannon": "^7.8.1",
     "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
@@ -38,8 +45,8 @@
     "express-handlebars": "^6.0.3",
     "express-session": "^1.17.2",
     "faker": "^3.1.0",
-    "forever": "^4.0.3",
     "knex": "^1.0.4",
+    "log4js": "^6.4.6",
     "minimist": "^1.2.6",
     "mongoose": "^6.2.8",
     "normalizr": "^3.6.2",

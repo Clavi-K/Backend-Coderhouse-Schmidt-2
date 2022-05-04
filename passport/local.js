@@ -1,5 +1,7 @@
 const LocalStrategy = require("passport-local").Strategy
+
 const userModel = require("../containers/users")
+const logger = require("../utils/logger")
 
 module.exports = (passport) => {
 
@@ -19,7 +21,7 @@ module.exports = (passport) => {
             done(null, user)
 
         } catch (err) {
-            console.log(err)
+            logger.error(error)
             done(err)
         }
 
@@ -49,7 +51,7 @@ module.exports = (passport) => {
             })
 
         } catch (err) {
-            console.log(err)
+            logger.error(error)
             done(err)
         }
 
@@ -61,7 +63,7 @@ module.exports = (passport) => {
     passport.serializeUser((user, done) => done(null, user.id));
 
     passport.deserializeUser(async (id, done) => {
-        console.log(id);
+        logger.info(id);
         done(null, await userModel.getById(id));
     });
 

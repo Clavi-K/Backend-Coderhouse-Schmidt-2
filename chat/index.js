@@ -1,18 +1,19 @@
 const MongoModel = require("../containers/messages");
 const prods = require("../data/prods");
+const logger = require("../utils/logger")
 
 const users = {};
 
 module.exports = async (socket) => {
 
-    console.log(`New user connected: ${socket.id}`);
+    logger.info(`New user connected: ${socket.id}`);
     socket.emit("prods", prods);
 
     /* --- Disconnection --- */
 
     socket.on("disconnect", () => {
 
-        console.log("Disconnected user");
+        logger.info("Disconnected user");
 
         delete users[socket.id];
         socket.broadcast.emit("offline", socket.id);
@@ -43,7 +44,7 @@ module.exports = async (socket) => {
 
         } catch (e) {
 
-            console.log(e);
+            logger.error(e);
             throw e;
         }
 
@@ -62,7 +63,7 @@ module.exports = async (socket) => {
 
         } catch (e) {
 
-            console.log(e);
+            logger.error(e);
             throw e;
 
         }
