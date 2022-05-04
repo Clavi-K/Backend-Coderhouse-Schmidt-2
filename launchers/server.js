@@ -1,5 +1,5 @@
 (async () => {
-    const PORT = require("../config/minimist")
+    const PORT = process.env.PORT || 8082
     const app = await require("../app");
 
     //logger
