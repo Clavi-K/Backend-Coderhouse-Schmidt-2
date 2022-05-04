@@ -40,13 +40,11 @@ router.get("/logout", auth, (req, res) => {
 
 });
 
-router.get("/info", /* auth, compression(), */ (req, res) => {
+router.get("/info", auth, compression(),  (req, res) => {
 
     logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
 
     const CPUs = require("os").cpus().length
-
-
 
     res.send({
         arguments: minimist(process.argv.slice(2)),
