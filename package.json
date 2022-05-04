@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --ignore './public/*' --ignore './sesion/* -r dotenv/config ./launchers/server.js",
+    "start": "node ./launchers/server.js",
     "dev": "nodemon --ignore './public/*' --ignore './sesion/* -r dotenv/config ./launchers/server.js",
     "forever:stopall": "forever stopall",
     "forever:list": "forever list",
