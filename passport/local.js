@@ -1,7 +1,9 @@
 const LocalStrategy = require("passport-local").Strategy
 
 const userModel = require("../containers/users")
+const cartModel = require("../containers/carts")
 const logger = require("../utils/logger")
+const mailSender = require("../notifications/mail")
 
 module.exports = (passport) => {
 
@@ -29,7 +31,7 @@ module.exports = (passport) => {
 
     const registerUser = async (req, email, password, done) => {
 
-        const { name, surname } = req.body
+        const { name, surname, age, phone, address } = req.body
 
         try {
 
@@ -37,12 +39,39 @@ module.exports = (passport) => {
                 return done(null, false, { message: "User already exists!" })
             }
 
+            if (!req.file) {
+                return done(null, false, { message: "No avatar selected" })
+            }
+
+            if (phone.charAt(0) !== "+") {
+                return done(null, false, { message: "Invalid phone format" })
+            }
+
             const user = await userModel.save({
                 email,
                 password,
                 name,
                 surname,
+                age,
+                phone,
+                address,
+                avatar: `../static/img/${email}.jpg`
             })
+
+            const cart = await cartModel.save({
+                userId: user._id,
+                products: []
+            })
+
+            await mailSender.send(process.env.GMAIL_ADDRESS, "Nuevo usuario registrado", `
+                <h1>Nuevo usuario registrado</h1>
+                <p>Correo electrónico: ${user.email}</p>
+                <p>Nombre: ${user.name}</p>
+                <p>Apellido: ${user.surname}</p>
+                <p>Edad: ${user.age}</p>
+                <p>Dirección: ${user.address}</p>
+                <p>Número telefónico: ${user.phone}</p>
+            `)
 
             done(null, {
                 ...user,
@@ -51,7 +80,7 @@ module.exports = (passport) => {
             })
 
         } catch (err) {
-            logger.error(error)
+            logger.error(err)
             done(err)
         }
 

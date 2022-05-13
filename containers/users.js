@@ -9,7 +9,11 @@ class UserModel {
             email: String,
             name: String,
             surname: String,
-            password: String
+            password: String,
+            age: Number,
+            phone: String,
+            address: String,
+            avatar: String
         })
 
         this.model = model("users", schema)
@@ -35,6 +39,10 @@ class UserModel {
             id: user._id,
             name: user.name,
             surname: user.surname,
+            age: user.age,
+            phone: user.phone,
+            address: user.address,
+            avatar: user.avatar,
             completeName: `${user.name} ${user.surname}`,
             email: user.email
         }
@@ -52,13 +60,18 @@ class UserModel {
         return await bcrypt.compare(pwd, user.password);
     }
 
+    // find or create by email
     findOrCreateByEmail(email, user, done) {
         this.model.findOneAndUpdate({ email }, user, { upsert: true, new: true }, (err, createdUser) => {
             done(err, {
                 id: createdUser._id.toString(),
                 name: createdUser.name,
                 surname: createdUser.surname,
-                email: createdUser.email
+                email: createdUser.email,
+                age: createdUser.age,
+                phone: createdUser.phone,
+                address: createdUser.address,
+                avatar: createdUser.avatar
             })
         })
     }

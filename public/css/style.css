@@ -15,6 +15,15 @@
     margin-left: 1%;
 }
 
+.inputs div {
+    display: flex;
+    flex-direction: row;
+}
+
+.ageInput, .phoneInput {
+    margin-bottom: 3%;
+}
+
 .emailDiv {
     display: flex;
     flex-direction: column;

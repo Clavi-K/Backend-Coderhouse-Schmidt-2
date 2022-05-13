@@ -1,4 +1,4 @@
-<form action="/register" method="POST">
+<form action="/register" enctype="multipart/form-data" method="POST">
 
     <hr>
 
@@ -10,7 +10,19 @@
         <input type="text" name="email" id="email" class="emailInput" placeholder="Ingrese su correo electrónico">
         <input type="text" name="name" id="name" class="nameInput" placeholder="Ingrese su nombre">
         <input type="text" name="surname" id="surname" class="surnameInput" placeholder="Ingrese su apellido">
+        <input type="text" name="address" id="address" class="addressInput" placeholder="Ingrese su dirección">
         <input type="password" name="password" id="password" class="passwordInput" placeholder="Ingrese su contraseña">
+        <input type="number" name="age" id="age" class="ageInput" placeholder="Ingrese su edad">
+
+        <div class="phoneInput">
+            <input id="phone" type="tel" name="phone" />
+            <input type="button" id="verification" class="btn btn-secondary" value="Verificar" />
+        </div>
+
+        <label for="img" style="font-weight: bold;">Seleccionar avatar</label>
+        <input type="file" name="avatar" id="avatarInput" accept=".jpg,.png,.jpeg">
+
+        <hr>
 
     </div>
 
@@ -18,3 +30,7 @@
 
     <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
 </form>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.16/js/intlTelInput.min.js"></script>
+<script src="/static/js/phone.js"></script>

@@ -1,7 +1,7 @@
 const cluster = require("cluster")
 const CPUs = require("os").cpus().length
 const app = require("../app")
-const PORT = require("../config/minimist")
+const PORT = process.env.PORT || 8082
 
 if (cluster.isPrimary) {
 

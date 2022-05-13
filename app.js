@@ -1,27 +1,32 @@
 require('dotenv').config({ path: '.env' })
-const express = require('express');
+const express = require('express')
 const path = require('path')
 const http = require('http')
-const mongoose = require("mongoose");
-const { Server } = require('socket.io');
-const { engine } = require('express-handlebars');
-const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const mongoose = require("mongoose")
+const { Server } = require('socket.io')
+const { engine } = require('express-handlebars')
+const session = require("express-session")
+const MongoStore = require("connect-mongo")
 
 // passport and flash
 const passport = require("passport")
 const flash = require("express-flash")
 const initializePassportLocal = require("./passport/local")
 
-const config = require("./config");
+const config = require("./config")
 const chat = require("./chat")
-const viewRouter = require("./routers/routes");
-const randomsRouter = require("./routers/randomsRoutes");
+
+//routers
+const viewRouter = require("./routers/routes")
+const randomsRouter = require("./routers/randomsRoutes")
+const cartRouter = require("./routers/cartRoutes")
+
+//logger
 const logger = require("./utils/logger")
 
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+const app = express()
+const server = http.createServer(app)
+const io = new Server(server)
 
 mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.PASSWORD}@${config.atlas.HOSTNAME}/${config.atlas.DATABASE}?${config.atlas.OPTIONS}`).then(() => {
 
@@ -53,9 +58,10 @@ mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.P
     app.use(passport.initialize())
     app.use(passport.session())
 
-    app.use("/static", express.static(path.join(__dirname, 'public')));
-    app.use("/", viewRouter);
-    app.use("/api", randomsRouter);
+    app.use("/static", express.static(path.join(__dirname, 'public')))
+    app.use("/", viewRouter)
+    app.use("/cart", cartRouter)
+    app.use("/api", randomsRouter)
 
     app.get("*", (req, res) => {
         logger.warn(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Not found`)

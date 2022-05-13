@@ -4,12 +4,7 @@ const nameInput = document.getElementById("name");
 const surnameInput = document.getElementById("surname");
 const passwordInput = document.getElementById("password");
 const usersContainer = document.getElementById("usersContainer");
-const prodContainer = document.getElementById("prodContainer")
 const chat = document.getElementById("chat");
-const sendProd = document.getElementById("sendProd");
-const prodName = document.getElementById("prodName");
-const prodPrice = document.getElementById("prodPrice");
-const prodThumbnail = document.getElementById("prodThumbnail");
 const msgsContainer = document.getElementById("msgsContainer");
 const msg = document.getElementById("msg");
 const sendBtn = document.getElementById("sendBtn");
@@ -19,7 +14,6 @@ const user = {}
 user.email = emailInput.innerHTML;
 
 let users = [];
-const prods = [];
 
 user.info = {
     email: user.email,
@@ -52,14 +46,11 @@ user.socket.on("messages", (data) => {
 
 })
 user.socket.on("offline", deleteUser);
-user.socket.on("prods", renderProds);
 user.socket.on("message", render);
 
 renderUserList();
 
-sendProd.addEventListener("click", addProd);
 sendBtn.addEventListener("click", msgManager);
-
 
 function renderUser(u) {
 
@@ -98,36 +89,6 @@ function deleteUser(id) {
 
     users = users.filter(u => u.id != id)
     renderUserList();
-
-}
-
-function renderProds(prods) {
-
-    let html;
-
-    fetch("../static/hbs/products.hbs")
-        .then(response => response.text())
-        .then(hbsTemplate => {
-
-            const template = Handlebars.compile(hbsTemplate);
-            html = template({ prods });
-
-            prodContainer.innerHTML = html;
-
-        })
-        .catch((err) => {
-            console.log(`Hubo un error ${err}`)
-        })
-
-}
-
-function addProd() {
-
-    user.socket.emit("newProd", { name: prodName.value, price: prodPrice.value, thumbnail: prodThumbnail.value });
-
-    prodName.value = null;
-    prodPrice.value = null;
-    prodThumbnail.value = null;
 
 }
 

@@ -1,0 +1,16 @@
+<body>
+
+    {{> navbar}}
+
+    <h2>Información de usuario</h2>
+
+    <p>Correo electrónico: <span style="font-weight: bolder;">{{user.email}}</span></p>
+    <p>Nombre: <span style="font-weight: bolder;">{{user.name}}</span></p>
+    <p>Apellido: <span style="font-weight: bolder;">{{user.surname}}</span></p>
+    <p>Edad: <span style="font-weight: bolder;">{{user.age}}</span></p>
+    <p>Dirección: <span style="font-weight: bolder;">{{user.address}}</span></p>
+    <p>Avatar:</p>
+
+    <img src="{{user.avatar}}" alt="">
+
+</body>

@@ -1,0 +1,40 @@
+<body>
+
+    {{> navbar}}
+
+    {{#if products}}
+
+    <ul>
+
+        {{#each products}}
+
+        <li class="prod">
+
+            <img style="height: 350px; width: 250px;" src="{{image}}" alt="">
+
+            <h3 class="prodName">Nombre: {{name}}</h3>
+            <h3 class="prodPrice">Precio: {{price}}</h3>
+            <h3>Plataformas</h3>
+            <ul>
+                {{#each platforms}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+
+        </li>
+
+        <a href="/cart/delete/{{id}}">Remover del carrito</a>
+
+        {{/each}}
+
+    </ul>
+
+    <a href="/cart/confirm">Confirmar pedido</a>
+
+    {{else}}
+
+    <h3 style="color: grey; margin: 1%;">El carrito está vacío</h3>
+
+    {{/if}}
+
+</body>

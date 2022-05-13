@@ -1,19 +1,27 @@
-const { Router } = require("express");
+const { Router } = require("express")
 const passport = require("passport")
 const minimist = require("minimist")
 const compression = require("compression")
 
-const auth = require("../middlewares/auth");
+const auth = require("../middlewares/auth")
+const upload = require("../middlewares/avatar")
 const logger = require("../utils/logger")
+const productModel = require("../containers/products")
 
 const router = new Router();
 
-router.get("/", auth, (req, res) => {
+router.get("/", auth, async (req, res) => {
+
     logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
-    res.render("home", { user: req.user })
+
+    const userId = req.user._id.toString()
+
+    const prods = await productModel.getAll()
+
+    res.render("home", { user: req.user, prods })
 });
 
-router.post("/register", passport.authenticate("register", {
+router.post("/register", upload.single("avatar"), passport.authenticate("register", {
     successRedirect: "/",
     failureRedirect: "/register",
     failureFlash: true
@@ -40,7 +48,7 @@ router.get("/logout", auth, (req, res) => {
 
 });
 
-router.get("/info", auth, compression(),  (req, res) => {
+router.get("/info", auth, compression(), (req, res) => {
 
     logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
 
@@ -59,5 +67,18 @@ router.get("/info", auth, compression(),  (req, res) => {
 
 })
 
+router.get("/chat", auth, (req, res) => {
+
+    const user = req.user
+    res.render("chat", { user })
+
+})
+
+router.get("/profile", auth, (req, res) => {
+
+    const user = req.user
+    res.render("profile", { user })
+
+})
 
 module.exports = router;

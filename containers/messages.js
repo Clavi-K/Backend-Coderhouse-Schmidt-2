@@ -10,7 +10,7 @@ class MongoModel {
                 name: String,
                 surname: String,
                 age: Number,
-                alias: String,
+                phone: String,
                 avatar: String
             },
             text: String

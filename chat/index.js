@@ -1,5 +1,5 @@
 const MongoModel = require("../containers/messages");
-const prods = require("../data/prods");
+
 const logger = require("../utils/logger")
 
 const users = {};
@@ -7,7 +7,6 @@ const users = {};
 module.exports = async (socket) => {
 
     logger.info(`New user connected: ${socket.id}`);
-    socket.emit("prods", prods);
 
     /* --- Disconnection --- */
 
@@ -33,25 +32,6 @@ module.exports = async (socket) => {
 
         socket.broadcast.emit("users", { id: socket.id, email: user.email });
         socket.emit("messages", messages);
-
-    });
-
-    socket.on("newProd", (prod) => {
-
-        try {
-
-            objValidator(prod);
-
-        } catch (e) {
-
-            logger.error(e);
-            throw e;
-        }
-
-        prod.price = parseInt(prod.price);
-        prods.push(prod);
-
-        socket.emit("prods", prods);
 
     });
 
