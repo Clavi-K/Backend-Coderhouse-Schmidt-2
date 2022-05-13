@@ -10,7 +10,7 @@ class WhatsappSender {
 
         const response = await this.client.messages.create({
             body,
-            from: "whatsapp:+14155238886",
+            from: `whatsapp:${process.env.TWILIO_PHONE}`,
             to: `whatsapp:${phone}`
         })
 
