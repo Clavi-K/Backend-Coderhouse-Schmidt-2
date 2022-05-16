@@ -81,32 +81,29 @@
     list-style: none;
 }
 
-.newProd {
+.prod img {
+    height: 400px;
+    width: 250px;
+}
+
+.prodInfo {
+    font-weight: bold;
+    font-size: large;
+}
+
+.platforms {
     display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin: 1%;
+    flex-direction: row;
 }
 
-.prodImg{
-    height: 300%;
-}
-
-.newProd input {
-    margin-top: 1%;
-}
-
-.newProd button {
-    margin-top: 1%;
+.platforms li {
+    margin-left: 5%;
 }
 
 .usersContainer {
     margin: 1%;
 }
 
-.prodContainer {
-    margin: 1%;
-}
 
 /* --- CHAT CSS --- */
 

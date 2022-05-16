@@ -2,18 +2,18 @@
 
 {{#if prods}}
 
-<ul>
+<ul class="prodList">
 
     {{#each prods}}
 
     <li class="prod">
 
-        <img style="height: 350px; width: 250px;" src="{{image}}" alt="">
+        <img src="{{image}}" alt="">
 
-        <h3 class="prodName">Nombre: {{name}}</h3>
-        <h3 class="prodPrice">Precio: {{price}}</h3>
-        <h3>Plataformas</h3>
-        <ul>
+        <p class="prodName">Nombre: {{name}}</p>
+        <p class="prodPrice">Precio: {{price}}</p>
+        <p>Plataformas</h3>
+        <ul class="platforms">
             {{#each platforms}}
             <li>{{this}}</li>
             {{/each}}
