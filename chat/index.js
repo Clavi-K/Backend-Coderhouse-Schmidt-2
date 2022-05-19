@@ -1,4 +1,4 @@
-const MongoModel = require("../containers/messages");
+const MongoModel = require("../models/messages.model");
 
 const logger = require("../utils/logger")
 

@@ -17,9 +17,9 @@ const config = require("./config")
 const chat = require("./chat")
 
 //routers
-const viewRouter = require("./routers/routes")
-const randomsRouter = require("./routers/randomsRoutes")
-const cartRouter = require("./routers/cartRoutes")
+const viewRouter = require("./routers/home.route")
+const randomsRouter = require("./routers/random.route")
+const cartRouter = require("./routers/cart.route")
 
 //logger
 const logger = require("./utils/logger")
