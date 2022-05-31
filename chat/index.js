@@ -1,4 +1,6 @@
-const MongoModel = require("../models/messages.model");
+const ModelFactory = require("../models/model.factory")
+
+const messagesModel = ModelFactory.getModel("messages")
 
 const logger = require("../utils/logger")
 
@@ -28,7 +30,7 @@ module.exports = async (socket) => {
 
         }
 
-        const messages = await MongoModel.readMessages();
+        const messages = await messagesModel.readMessages();
 
         socket.broadcast.emit("users", { id: socket.id, email: user.email });
         socket.emit("messages", messages);
@@ -48,7 +50,7 @@ module.exports = async (socket) => {
 
         }
 
-        MongoModel.saveMessage(msg);
+        messagesModel.saveMessage(msg);
         socket.broadcast.emit("message", msg);
 
     });

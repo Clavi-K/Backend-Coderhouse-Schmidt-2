@@ -1,6 +1,8 @@
 const minimist = require("minimist")
 
-const productModel = require("../models/products.model")
+const ModelFactory = require("../models/model.factory")
+
+const productModel = ModelFactory.getModel("products")
 
 module.exports = {
 

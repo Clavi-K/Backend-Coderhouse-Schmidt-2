@@ -1,9 +1,11 @@
 const mailSender = require("../notifications/mail")
 const WhatsappSender = require("../notifications/whatsapp")
 
-const cartModel = require("../models/carts.model")
-const productModel = require("../models/products.model")
-const orderModel = require("../models/orders.model")
+const ModelFactory = require("../models/model.factory")
+
+const cartModel = ModelFactory.getModel("carts")
+const productModel = ModelFactory.getModel("products")
+const orderModel = ModelFactory.getModel("orders")
 
 module.exports = {
 
