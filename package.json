@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./launchers/server.js",
     "dev": "nodemon --ignore './public/*' --ignore './sesion/* -r dotenv/config ./launchers/server.js",
     "forever:stopall": "forever stopall",
@@ -16,7 +15,8 @@
     "pm2:cluster": "pm2 start launchers/pm2.cluster.config.js --watch",
     "test:artillery": "artillery quick --count=50 -n 20 http://localhost:8082/info > result-artillery.txt",
     "test:autocannon": "node ./test/test.spec.js",
-    "0x": "0x ./launchers/server.js"
+    "0x": "0x ./launchers/server.js",
+    "test": "mocha --timeout 10000 './test/unit/**/*.test.js'"
   },
   "repository": {
     "type": "git",
@@ -30,12 +30,16 @@
   },
   "homepage": "https://github.com/Clavi-K/Backend-Coderhouse-Schmidt-2#readme",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.3"
   },
   "dependencies": {
     "0x": "^5.2.1",
     "artillery": "^2.0.0-15",
     "autocannon": "^7.8.1",
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",

@@ -1,7 +1,6 @@
 const minimist = require("minimist")
 
 const ModelFactory = require("../models/model.factory")
-
 const productModel = ModelFactory.getModel("products")
 
 module.exports = {

@@ -42,6 +42,14 @@ class ProductModel {
         }
     }
 
+    //update
+    async update(obj) {
+
+        const original = await this.model.updateOne({ _id: Types.ObjectId(obj.id) }, obj)
+        return original
+
+    }
+
     //delete product
     async delete(id) {
         return await this.model.deleteOne({ _id: Types.ObjectId(id) })
