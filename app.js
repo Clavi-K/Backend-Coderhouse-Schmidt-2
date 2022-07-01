@@ -7,7 +7,6 @@ const { Server } = require('socket.io')
 const { engine } = require('express-handlebars')
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
-const GraphQLCart = require("./graphql/graphql.cart")
 
 // passport and flash
 const passport = require("passport")
@@ -41,7 +40,6 @@ mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.P
         extname: "hbs"
     }));
 
-    GraphQLCart(app)
     app.use(express.json())
     app.use(flash())
     app.use(express.urlencoded({ extended: true }))

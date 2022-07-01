@@ -41,6 +41,7 @@ module.exports = {
     },
 
     chat: (req, res) => {
+        logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
 
         const user = req.user
 
@@ -48,10 +49,29 @@ module.exports = {
     },
 
     profile: (req, res) => {
+        logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
 
         const user = req.user
-        
+
         res.render("profile", { user })
+    },
+
+    getNewProd: (req, res) => {
+        const user = req.user
+        res.render("newProd", { user })
+    },
+
+    postNewProd: async (req, res) => {
+        logger.info(`POST ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
+
+        const error = await service.newProd(req)
+
+        if (error) {
+            return res.render("newProd", { user: req.user, messages: { error } })
+        }
+
+        return res.redirect("/")
+
     }
 
 }

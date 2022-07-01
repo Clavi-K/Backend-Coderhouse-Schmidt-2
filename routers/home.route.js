@@ -4,6 +4,7 @@ const compression = require("compression")
 
 const auth = require("../middlewares/auth")
 const upload = require("../middlewares/avatar")
+const uploadPord = require("../middlewares/productImg")
 const controller = require("../controllers/home.controller")
 
 const router = new Router();
@@ -21,6 +22,10 @@ router.post("/login", passport.authenticate("login", {
     failureRedirect: "/login",
     failureFlash: true
 }))
+
+router.get("/newProd", (req, res) => res.render("newProd", {user: req.user}))
+
+router.post("/newProd", auth, uploadPord.single("image"), controller.postNewProd)
 
 router.get("/register", controller.getRegister)
 router.get("/login", controller.getLogin)

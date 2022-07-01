@@ -86,15 +86,18 @@
     width: 250px;
 }
 
+.platform {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
 .prodInfo {
     font-weight: bold;
     font-size: large;
 }
 
-.platforms {
-    display: flex;
-    flex-direction: row;
-}
 
 .platforms li {
     margin-left: 5%;

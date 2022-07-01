@@ -57,14 +57,24 @@ class ProductModel {
 
     //get by id
     async getById(id) {
-        const product = await this.model.findById(Types.ObjectId(id)).lean()
-        return {
-            id: product._id,
-            name: product.name,
-            price: product.price,
-            platforms: product.platforms,
-            image: product.image
+
+        try {
+
+            const product = await this.model.findById(Types.ObjectId(id)).lean()
+            return {
+                id: product._id,
+                name: product.name,
+                price: product.price,
+                platforms: product.platforms,
+                image: product.image
+            }
+
+        } catch (error) {
+
+            return ("Object does not exists!")
+
         }
+
     }
 
     //get cart

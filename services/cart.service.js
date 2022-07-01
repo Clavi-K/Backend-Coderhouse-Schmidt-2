@@ -2,6 +2,7 @@ const mailSender = require("../notifications/mail")
 const WhatsappSender = require("../notifications/whatsapp")
 
 const ModelFactory = require("../models/model.factory")
+const logger = require("../utils/logger")
 
 const cartModel = ModelFactory.getModel("carts")
 const productModel = ModelFactory.getModel("products")
@@ -60,19 +61,33 @@ module.exports = {
                             ${htmlProds.join(" ")}
                           </ul>`
 
-        const wspAdminBody = `Nuevo pedido de ${user.email}\n
-                     Dirección de envío: ${user.address}\n
+        const userTemplate = `<h1>Tu pedido de eCommerce de videojuegos</h1>
+                              <p style="font-weight: bolder;">Productos a enviar:</p>
+                              <ul>
+                                ${htmlProds.join(" ")}
+                              </ul>`
+
+        const wspAdminBody = `Nuevo pedido de ${ user.email
+}\n
+                     Dirección de envío: ${ user.address } \n
                      Productos a enviar:
-                     ${products.join(" ")}`
+                     ${ products.join(" ") } `
 
         const wspClientBody = `Tu pedido de \n
-                           ${products.join(" ")}
+                           ${ products.join(" ") }
                            Fue recibido y se encuentra en proceso.\n
                            Te llegará más información de este número con el estado de tu pedido.`
 
-        await mailSender.send(process.env.GMAIL_ADDRESS, "Nuevo pedido", template)
-        await WhatsappSender.sendWhatsapp(process.env.ADMIN_PHONE, wspAdminBody)
-        await WhatsappSender.sendWhatsapp(user.phone, wspClientBody)
-    }
 
+        try {
+            await mailSender.send(process.env.GMAIL_ADDRESS, "Nuevo pedido", template)
+            await WhatsappSender.sendWhatsapp(process.env.ADMIN_PHONE, wspAdminBody)
+
+            await mailSender.send(user.email, "Tu pedido", userTemplate)
+            await WhatsappSender.sendWhatsapp(user.phone, wspClientBody)
+        } catch (error) {
+            logger.error(error)
+        }
+
+    }
 }

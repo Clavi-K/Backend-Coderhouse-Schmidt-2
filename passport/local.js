@@ -31,12 +31,16 @@ module.exports = (passport) => {
 
     const registerUser = async (req, email, password, done) => {
 
-        const { name, surname, age, phone, address } = req.body
+        const { name, surname, age, phone, address, password2 } = req.body
 
         try {
 
             if (await userModel.existsByEmail(email)) {
                 return done(null, false, { message: "User already exists!" })
+            }
+
+            if (password !== password2) {
+                return done(null, false, {message: "Passwords dont match!"})
             }
 
             if (!req.file) {

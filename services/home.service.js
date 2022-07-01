@@ -22,7 +22,56 @@ module.exports = {
             mainPath: process.mainModule.path,
             CPUs: CPUs
         }
+    },
+
+    newProd: async (req) => {
+
+        const obj = req.body
+        const file = req.file
+        const objDb = {}
+
+        if (!obj.name) {
+            return "Missing product name!"
+        }
+
+        if (!obj.price) {
+            return "Missing product price!"
+        }
+
+        if (obj.price <= 0) {
+            return "Invalid product price!"
+        }
+
+        if (!obj.platforms) {
+            return "Missing product platforms!"
+        }
+
+        if (!file) {
+            return "Missing product image!"
+        }
+
+        if (typeof obj.platforms == "object") {
+
+
+            objDb.name = obj.name
+            objDb.price = obj.price
+            objDb.platforms = obj.platforms
+            objDb.image = `../static/img/prods/${obj.name}.jpg`
+
+
+        } else if (typeof obj.platforms == "string") {
+
+            objDb.name = obj.name
+            objDb.price = obj.price
+            objDb.platforms = [obj.platforms]
+            objDb.image = `../static/img/prods/${obj.name}.jpg`
+
+        }
+
+        await productModel.save(objDb)
+
     }
+
 
 }
 

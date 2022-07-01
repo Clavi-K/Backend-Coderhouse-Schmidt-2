@@ -35,8 +35,19 @@ module.exports = {
         return await productModel.update(obj)
     },
 
-    delete: async(id) => {
+    delete: async (id) => {
         return await productModel.delete(id)
+    },
+
+    prod: async (id) => {
+        const response = await productModel.getById(id)
+
+        if (!response.name) {
+            return "Product does not exists!"
+        } else {
+            return response
+        }
+
     }
 
 }
