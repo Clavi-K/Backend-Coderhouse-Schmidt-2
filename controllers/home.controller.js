@@ -37,7 +37,7 @@ module.exports = {
 
         const info = service.info()
 
-        res.send(info)
+        res.render("info", { info })
     },
 
     chat: (req, res) => {

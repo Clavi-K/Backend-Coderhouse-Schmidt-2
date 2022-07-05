@@ -23,7 +23,7 @@ router.post("/login", passport.authenticate("login", {
     failureFlash: true
 }))
 
-router.get("/newProd", (req, res) => res.render("newProd", {user: req.user}))
+router.get("/newProd", auth, controller.getNewProd)
 
 router.post("/newProd", auth, uploadPord.single("image"), controller.postNewProd)
 
