@@ -46,17 +46,21 @@ module.exports = {
             return "Missing product platforms!"
         }
 
+        if (!obj.category) {
+            return "Missing product category"
+        }
+
         if (!file) {
             return "Missing product image!"
         }
 
         if (typeof obj.platforms == "object") {
 
-
             objDb.name = obj.name
             objDb.price = obj.price
             objDb.platforms = obj.platforms
             objDb.image = `../static/img/prods/${obj.name}.jpg`
+            objDb.category = obj.category
 
 
         } else if (typeof obj.platforms == "string") {
@@ -65,6 +69,7 @@ module.exports = {
             objDb.price = obj.price
             objDb.platforms = [obj.platforms]
             objDb.image = `../static/img/prods/${obj.name}.jpg`
+            objDb.category = obj.category
 
         }
 

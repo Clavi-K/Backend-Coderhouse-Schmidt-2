@@ -24,7 +24,6 @@ router.post("/login", passport.authenticate("login", {
 }))
 
 router.get("/newProd", auth, controller.getNewProd)
-
 router.post("/newProd", auth, uploadPord.single("image"), controller.postNewProd)
 
 router.get("/register", controller.getRegister)

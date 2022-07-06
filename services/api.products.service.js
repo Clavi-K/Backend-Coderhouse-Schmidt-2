@@ -43,11 +43,16 @@ module.exports = {
         const response = await productModel.getById(id)
 
         if (!response.name) {
-            return "Product does not exists!"
+            return "Product does not exists! <a href='/'>Home</a>"
         } else {
             return response
         }
 
+    },
+
+    category: async (cat) => {
+        const response = await productModel.getByCategory(cat)
+        return response
     }
 
 }

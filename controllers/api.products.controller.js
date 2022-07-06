@@ -9,7 +9,7 @@ module.exports = {
         const prods = await service.getAll()
         res.send(prods)
     },
-    
+
     update: async (req, res) => {
         logger.info(`PUT ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
 
@@ -35,6 +35,16 @@ module.exports = {
 
         const response = await service.prod(id)
         res.send(response).status(200)
+
+    },
+
+    category: async (req, res) => {
+        logger.info(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Successful`)
+
+        const { category } = req.params
+        const response = await service.category(category)
+
+        res.send(response)
 
     }
 

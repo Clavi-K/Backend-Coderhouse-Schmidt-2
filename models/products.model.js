@@ -8,7 +8,8 @@ class ProductModel {
             name: String,
             platforms: { type: [String], default: [] },
             price: Number,
-            image: String
+            image: String,
+            category: String
         })
 
         this.model = model("products", schema)
@@ -25,7 +26,8 @@ class ProductModel {
             name: product.name,
             price: product.price,
             platforms: product.platforms,
-            image: product.image
+            image: product.image,
+            category: product.category
         }))
 
     }
@@ -38,7 +40,8 @@ class ProductModel {
             name: product.name,
             price: product.price,
             platforms: product.platforms,
-            image: product.image
+            image: product.image,
+            category: product.category
         }
     }
 
@@ -66,7 +69,8 @@ class ProductModel {
                 name: product.name,
                 price: product.price,
                 platforms: product.platforms,
-                image: product.image
+                image: product.image,
+                category: product.category
             }
 
         } catch (error) {
@@ -91,7 +95,8 @@ class ProductModel {
                 name: product.name,
                 price: product.price,
                 platforms: product.platforms,
-                image: product.image
+                image: product.image,
+                category: product.category
             })
 
         }
@@ -118,6 +123,11 @@ class ProductModel {
 
         return result
 
+    }
+
+    async getByCategory(cat) {
+        const prods = await this.model.find({ category: cat })
+        return prods
     }
 
 }
