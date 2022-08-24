@@ -1,0 +1,21 @@
+.blue {
+    color: #2bfcfd;
+}
+
+.pink {
+    color: #f603fd;
+}
+
+span {
+    font-weight: bolder;
+}
+
+
+.profilePic {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-style: solid;
+    border-color: #2bfcfd;
+    border-radius: 20px;
+}

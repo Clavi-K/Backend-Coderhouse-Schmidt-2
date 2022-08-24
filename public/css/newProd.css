@@ -1,0 +1,109 @@
+form {
+    background-image: none;
+    margin: 0 auto;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-color: #2bfcfd;
+    border-radius: 20px;
+    color: #f603fd;
+    animation: fadein 0.5s;
+}
+
+form h1 {
+    margin: 1vh;
+}
+
+.btn {
+    border-style: solid;
+    border-color: #2bfcfd;
+    border-radius: 25px;
+    color: #f603fd;
+    margin-bottom: 2vh;
+    font-weight: bold;
+    padding: 3vh;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    border-width: 1vw;
+    border-color: #f603fd;
+    color: #2bfcfd;
+    font-size: xx-large;
+    text-decoration: underline;
+    border-radius: 30px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    margin-bottom: 2vh;
+}
+
+.field {
+    background: none;
+    border-style: solid;
+    border-color: #2bfcfd;
+    border-radius: 20px;
+    padding: 0.5vw;
+    width: 35vw;
+    margin: 0.5vw;
+    color: #f603fd;
+}
+
+.select {
+    background: none;
+    border-style: solid;
+    border-color: #2bfcfd;
+    border-radius: 20px;
+    height: 5vh;
+    width: 35vw;
+    margin: 0.5vw;
+    color: #f603fd;
+}
+
+.selection {
+    margin: 1%;
+}
+
+::placeholder { 
+    color: #fb83ff;
+}
+
+.input label {
+    margin-left: 1.5vw;
+}
+.registration {
+    color: #2bfcfd;
+}
+
+.registration a {
+    color: #2bfcfd;
+    text-decoration: underline;
+    transition: 0.3s;
+}
+
+.registration a:hover {
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.btn {
+    border-style: solid;
+    border-color: #2bfcfd;
+    border-radius: 25px;
+    color: #f603fd;
+    margin: 5%;
+    margin-bottom: 1%;
+    font-weight: bold;
+    padding: 3vh;
+    transition: 0.3s;
+}
+
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

@@ -18,9 +18,7 @@ const chat = require("./chat")
 
 //routers
 const viewRouter = require("./routers/home.route")
-const randomsRouter = require("./routers/random.route")
 const cartRouter = require("./routers/cart.route")
-const apiProdsRouter = require("./routers/api.products.route")
 
 //logger
 const logger = require("./utils/logger")
@@ -62,8 +60,6 @@ mongoose.connect(`${config.atlas.SCHEMA}://${config.atlas.USER}:${config.atlas.P
     app.use("/static", express.static(path.join(__dirname, 'public')))
     app.use("/", viewRouter)
     app.use("/cart", cartRouter)
-    app.use("/random", randomsRouter)
-    app.use("/api/products", apiProdsRouter)
 
     app.get("*", (req, res) => {
         logger.warn(`GET ${req.protocol + '://' + req.get('host') + req.originalUrl} Not found`)

@@ -1,39 +1,48 @@
+<link rel="stylesheet" href="/static/css/cart.css">
+
 <body>
 
     {{> navbar}}
 
     {{#if products}}
 
-    <ul>
+    <ul class="prodList">
 
         {{#each products}}
 
         <li class="prod">
 
-            <img style="height: 350px; width: 250px;" src="{{image}}" alt="">
+            <div class="imgRemove">
+                <img class="cover" src="{{image}}" alt="">
+                <a href="/cart/delete/{{id}}">Remove from cart</a>
+            </div>
 
-            <h3 class="prodName">Nombre: {{name}}</h3>
-            <h3 class="prodPrice">Precio: {{price}}</h3>
-            <h3>Plataformas</h3>
-            <ul>
-                {{#each platforms}}
-                <li>{{this}}</li>
-                {{/each}}
-            </ul>
+            <h3 class="prodName">Name: {{name}}</h3>
+            <h3 class="prodPrice">Price: ${{price}}</h3>
+
+            <div class="platforms">
+
+                <h3 class="platform">Platforms:</h3>
+                <ul class="platformsList">
+                    {{#each platforms}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+
+            </div>
 
         </li>
 
-        <a href="/cart/delete/{{id}}">Remover del carrito</a>
 
         {{/each}}
 
     </ul>
 
-    <a href="/cart/confirm">Confirmar pedido</a>
+    <a href="/cart/confirm">Confirm order</a>
 
     {{else}}
 
-    <h3 style="color: grey; margin: 1%;">El carrito está vacío</h3>
+    <h3 style="color: grey; margin: 1%;">The cart is empty</h3>
 
     {{/if}}
 

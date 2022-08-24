@@ -1,16 +1,18 @@
+<link rel="stylesheet" href="/static/css/profile.css">
+
 <body>
 
     {{> navbar}}
 
-    <h2>Información de usuario</h2>
+    <h2 class="profileTitle pink">User info:</h2>
 
-    <p>Correo electrónico: <span style="font-weight: bolder;">{{user.email}}</span></p>
-    <p>Nombre: <span style="font-weight: bolder;">{{user.name}}</span></p>
-    <p>Apellido: <span style="font-weight: bolder;">{{user.surname}}</span></p>
-    <p>Edad: <span style="font-weight: bolder;">{{user.age}}</span></p>
-    <p>Dirección: <span style="font-weight: bolder;">{{user.address}}</span></p>
-    <p>Avatar:</p>
+    <p class="pink">Email: <span class="blue">{{user.email}}</span></p>
+    <p class="pink">Name: <span class="blue">{{user.name}}</span></p>
+    <p class="pink">Last name: <span class="blue">{{user.surname}}</span></p>
+    <p class="pink">Age: <span class="blue">{{user.age}}</span></p>
+    <p class="pink">Address: <span class="blue">{{user.address}}</span></p>
+    <p class="pink">Avatar:</p>
 
-    <img src="{{user.avatar}}" alt="">
+    <img class="profilePic" src="{{user.avatar}}" alt="">
 
 </body>

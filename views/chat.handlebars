@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/static/css/chat.css">
+
 <p id="email" style="display: none;">{{user.email}}</p>
 <p id="name" style="display: none;">{{user.name}}</p>
 <p id="surname" style="display: none;">{{user.surname}}</p>
@@ -8,15 +10,15 @@
 
 <div id="chat" class="chat">
 
-    <h2 id="chatTitle">Chat</h2>
+    <h2 class="chatTitle" id="chatTitle">Chat</h2>
 
-    <div id="msgsContainer"></div>
+    <div class="container" id="msgsContainer"></div>
+
+    <hr class="hr">
 
     <div class="chatInput" id="chatInput">
-
-        <input class="msg" type="text" id="msg">
-        <button class="btn btn-primary send" id="sendBtn">Enviar</button>
-
+        <input class="msg inputText" placeholder="Type a message..." type="text" id="msg">
+        <button class="button" id="sendBtn">Send</button>
     </div>
 
     <hr>

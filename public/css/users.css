@@ -1,0 +1,23 @@
+.pink {
+    color: #f603fd;
+}
+
+.title {
+    font-weight: bold;
+    text-decoration:underline;
+}
+
+.username {
+    color: #2bfcfd;
+    list-style: none;
+}
+
+.username::before {
+    content: "\2022";  
+    color: #f603fd;
+    font-weight: bolder;
+    font-size: x-large;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}

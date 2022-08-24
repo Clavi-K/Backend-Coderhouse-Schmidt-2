@@ -1,35 +1,60 @@
+<link rel="stylesheet" href="/static/css/login.css">
+<link rel="stylesheet" href="/static/css/register.css">
+
 <form action="/register" enctype="multipart/form-data" method="POST">
 
     <hr>
 
-    <h1>Registrarse</h1>
+    <h1>Register</h1>
 
     {{> error }}
 
-    <div class="inputs">
-        <input type="text" name="email" id="email" class="emailInput" placeholder="Ingrese su correo electrónico">
-        <input type="text" name="name" id="name" class="nameInput" placeholder="Ingrese su nombre">
-        <input type="text" name="surname" id="surname" class="surnameInput" placeholder="Ingrese su apellido">
-        <input type="text" name="address" id="address" class="addressInput" placeholder="Ingrese su dirección">
-        <input type="password" name="password" id="password" class="passwordInput" placeholder="Ingrese su contraseña">
-        <input type="password" name="password2" id="password2" class="passwordInput" placeholder="Confirme su contraseña">
-        <input type="number" name="age" id="age" class="ageInput" placeholder="Ingrese su edad">
-
-        <div class="phoneInput">
-            <input id="phone" type="tel" name="phone" />
-            <input type="button" id="verification" class="btn btn-secondary" value="Verificar" />
-        </div>
-
-        <label for="img" style="font-weight: bold;">Seleccionar avatar</label>
-        <input type="file" name="avatar" id="avatarInput" accept=".jpg,.png,.jpeg">
-
-        <hr>
-
+    <div class="input">
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" class="emailInput">
+    </div>
+    <div class="input">
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" class="nameInput">
+    </div>
+    <div class="input">
+        <label for="surname">Surname: </label>
+        <input type="text" name="surname" id="surname" class="surnameInput">
+    </div>
+    <div class="input">
+        <label for="address">Address: </label>
+        <input type="text" name="address" id="address" class="addressInput">
+    </div>
+    <div class="input">
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" class="passwordInput">
     </div>
 
-    <button type="submit" class="btn btn-primary submit">Registrarse</button>
+    <div class="input">
+        <label for="password2">Repeat your password: </label>
+        <input type="password" name="password2" id="password2" class="passwordInput">
+    </div>
 
-    <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
+
+    <div class="input">
+        <label for="age">Age: </label>
+        <input type="number" name="age" id="age" class="ageInput">
+    </div>
+
+    <div class="input phoneI">
+        <label for="phone">Phone number:</label>
+        <input id="phone" type="tel" name="phone" />
+        <input type="button" id="verification" value="Verify" />
+    </div>
+
+    <div class="input field phoneI">
+        <label for="avatar">Select avatar:</label>
+        <input type="file" name="avatar" id="avatarInput" accept=".jpg,.png,.jpeg">
+    </div>
+
+    <button type="submit" class="btn">Register</button>
+
+    <p class="registration">Do you have an account?<a href="/login">Log in!</a></p>
 </form>
 
 

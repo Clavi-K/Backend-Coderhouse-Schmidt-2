@@ -42,7 +42,7 @@ user.socket.on("messages", (data) => {
         renderPending(item._doc)
     };
 
-    chaTitle.innerHTML = `Chat Compresión: ${compression(JSON.stringify(data).length, JSON.stringify(denormalizedData).length)}%`
+    chaTitle.innerHTML = `Chat compression: ${compression(JSON.stringify(data).length, JSON.stringify(denormalizedData).length)}%`
 
 })
 user.socket.on("offline", deleteUser);
@@ -113,12 +113,13 @@ function msgManager(e) {
 
 function render(data) {
     const msgElement = document.createElement("div")
-    const userEl = `<p class="user">${data.author.email}</p>`
+    const userEl = `<p class="user">${data.author.email}:</p>`
     const cssClass = data.author.email == user.email ? "local" : "remote"
     msgElement.classList.add(cssClass);
     msgElement.classList.add("msgBubble");
+    msgElement.classList.add(cssClass === "local" ? "right" : "left")
     msgElement.innerHTML = `
-      <div class="message ${cssClass === "local" ? "align-right" : "align-left"}">
+      <div class="message">
         ${cssClass === "local" ? userEl : userEl}
       </div>
       <div class="message-body">${data.text}</div>
@@ -130,14 +131,15 @@ function render(data) {
 function renderPending(data) {
 
     const msgElement = document.createElement("div")
-    const userEl = `<p class="user">${data.author.email}</p>`
+    const userEl = `<p class="user">${data.author.email}:</p>`
     const cssClass = data.author.email == user.email ? "local" : "remote"
 
     if (cssClass == "remote") {
         msgElement.classList.add(cssClass);
         msgElement.classList.add("msgBubble");
+        msgElement.classList.add(cssClass === "local" ? "right" : "left")
         msgElement.innerHTML = `
-              <div class="message ${cssClass === "local" ? "align-right" : "align-left"}">
+              <div class="message">
                 ${cssClass === "local" ? userEl : userEl}
               </div>
               <div class="message-body">${data.text}</div>

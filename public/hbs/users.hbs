@@ -1,26 +1,23 @@
-<h2>Usuarios conectados</h2>
+<link rel="stylesheet" href="/static/css/users.css">
 
-{{#if users.length}}
+<h2 class="pink title">Connected users:</h2>
 
 <ul>
+    {{#if users.length}}
 
     {{#each users}}
-
     <li>
-        <p class="userListEmail">{{email}}</p>
+        <p class="username">{{email}}</p>
     </li>
-
     {{/each}}
 
+    {{else}}
+
+    <li>
+        <p class="username">No connected users :c</p>
+    </li>
+
+    {{/if}}
 </ul>
-
-
-{{else}}
-
-<li>
-    <p>No hay usuarios conectados :c</p>
-</li>
-
-{{/if}}
 
 <hr>

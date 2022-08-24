@@ -54,29 +54,28 @@ module.exports = {
 
         const htmlProds = products.map(p => `<li>${p}</li>`)
 
-        const template = `<h1> Nuevo pedido de ${user.email}</h1>
-                          <p>Dirección de envío: ${user.address}</p>
-                          <p style="font-weight: bolder;">Productos a enviar:</p>
+        const template = `<h1> New order from ${user.email}</h1>
+                          <p>Shipment address: ${user.address}</p>
+                          <p style="font-weight: bolder;">Product list:</p>
                           <ul>
                             ${htmlProds.join(" ")}
                           </ul>`
 
-        const userTemplate = `<h1>Tu pedido de eCommerce de videojuegos</h1>
-                              <p style="font-weight: bolder;">Productos a enviar:</p>
+        const userTemplate = `<h1>Your Legaltech order:</h1>
+                              <p style="font-weight: bolder;">Product list:</p>
                               <ul>
                                 ${htmlProds.join(" ")}
                               </ul>`
 
-        const wspAdminBody = `Nuevo pedido de ${ user.email
-}\n
-                     Dirección de envío: ${ user.address } \n
-                     Productos a enviar:
+        const wspAdminBody = `New order from ${ user.email}\n
+                     Shipment address: ${ user.address } \n
+                     Product list:
                      ${ products.join(" ") } `
 
-        const wspClientBody = `Tu pedido de \n
+        const wspClientBody = `Your order from \n
                            ${ products.join(" ") }
-                           Fue recibido y se encuentra en proceso.\n
-                           Te llegará más información de este número con el estado de tu pedido.`
+                           Was received and is now being processed.\n
+                           You will receive a message from this number when there is any update.`
 
 
         try {

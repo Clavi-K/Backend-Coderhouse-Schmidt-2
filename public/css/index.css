@@ -1,0 +1,33 @@
+.title {
+    margin: 0%;
+    padding: 1%;
+    font-weight: bolder;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+}
+
+.banner h1 {
+    background: none;
+    color: #f603fd;
+}
+
+.banner img {
+    border-color: #2BFCFD;
+    border-style: solid;
+    border-radius: 50%;
+    width: 9%;
+    margin: 1%;
+}
+
+a {
+    transition:  0.3s;
+}
+
+a:hover { 
+    font-size: x-large;
+    font-weight: bolder;
+    text-decoration: underline;
+}

@@ -1,4 +1,6 @@
-<h2 style="text-decoration: underline;">Productos disponibles</h2>
+<link rel="stylesheet" href="/static/css/prods.css">
+
+<h2 class="prodTitle">Available products</h2>
 
 {{#if prods}}
 
@@ -10,16 +12,17 @@
 
         <img src="{{image}}" alt="">
 
-        <p class="prodName">Nombre: {{name}}</p>
-        <p class="prodPrice">Precio: {{price}}</p>
-        <p>Plataformas</h3>
+        <p class="prodName dots">Name: {{name}}</p>
+        <p class="prodPrice">Price: ${{price}}</p>
+        <h3>Platforms:</h3>
         <ul class="platforms">
             {{#each platforms}}
             <li>{{this}}</li>
             {{/each}}
         </ul>
 
-        <a href="/cart/add/{{id}}">Agregar al carrito</a>
+        <a href="/cart/add/{{id}}">Add to cart</a>
+
 
     </li>
 

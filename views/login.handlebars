@@ -1,17 +1,26 @@
+<link rel="stylesheet" href="/static/css/login.css">
+
 <form action="/login" method="POST">
 
-    <hr>
-
-    <h1>Iniciar sesión</h1>
+    <h1>Log in</h1>
 
     {{> error }}
 
     <div class="inputs">
-        <input type="text" name="email" id="email" class="emailInput" placeholder="Ingrese su correo electrónico">
-        <input type="password" name="password" id="password" class="passwordInput" placeholder="Ingrese su contraseña">
+
+        <div class="input">
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email" class="emailInput" >
+        </div>
+
+        <div class="input">
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" class="passwordInput" >
+        </div>
+
     </div>
 
-    <button type="submit" class="btn btn-primary submit">Iniciar sesión</button>
+    <button type="submit" class="btn">Log in</button>
 
-    <p>¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
+    <p class="registration">No account? <a href="/register">Register now!</a></p>
 </form>

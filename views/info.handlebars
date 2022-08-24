@@ -1,15 +1,17 @@
+<link rel="stylesheet" href="/static/css/profile.css">
+
 {{> navbar }}
 
-<p style="font-weight: bold;">Arguments:</p>
+<p class="pink">Arguments:</p>
 <ul>
     {{#each info.arguments._}} 
-        <li><p>{{this}}</p></li>
+        <li><p class="blue span">{{this}}</p></li>
     {{/each}}
 </ul>
-<p style="font-weight: bold;">Platofrm: {{info.platform}}</p>
-<p style="font-weight: bold;">Version: {{info.version}}</p>
-<p style="font-weight: bold;">Memory Usage: {{info.memoryUsage}}</p>
-<p style="font-weight: bold;">Execution Path: {{info.execPath}}</p>
-<p style="font-weight: bold;">Process Id: {{info.processId}}</p>
-<p style="font-weight: bold;">Main Path: {{info.mainPath}}</p>
-<p style="font-weight: bold;">CPUs: {{info.CPUs}}</p>
+<p class="pink">Platofrm: <span class="blue span">{{info.platform}}</span></p>
+<p class="pink">Version: <span class="blue span">{{info.version}}</span></p>
+<p class="pink">Memory Usage: <span class="blue span">{{info.memoryUsage}}</span></p>
+<p class="pink">Execution Path: <span class="blue span">{{info.execPath}}</span></p>
+<p class="pink">Process Id: <span class="blue span">{{info.processId}}</span></p>
+<p class="pink">Main Path: <span class="blue span">{{info.mainPath}}</span></p>
+<p class="pink">CPUs: <span class="blue span">{{info.CPUs}}</span></p>
